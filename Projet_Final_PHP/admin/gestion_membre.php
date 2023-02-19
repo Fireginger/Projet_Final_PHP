@@ -1,10 +1,9 @@
 <?php
 require_once("../init.inc.php");
 
-//--- LIENS UTILISATEURS ---//
 $contenu .= '<a href="?action=affichage">Affichage des utilisateurs</a><br>';
 
-//--- AFFICHAGE UTILISATEURS ---//
+// AFFICHAGE UTILISATEURS
 if(isset($_GET['action']) && $_GET['action'] == "affichage")
 {
     $contenu .= '<table><tr><th>ID</th><th>Nom d\'utilisateur</th><th>Email</th><th>Solde</th><th>Photo de profil</th><th>Role</th><th>Action</th></tr>';
@@ -25,9 +24,8 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
     $contenu .= '</table>';
 }
 
-//--- CHANGER STATUT UTILISATEUR ---//
-if(isset($_GET['action']) && $_GET['action'] == "changer_statut" && isset($_GET['id']))
-{
+//CHANGER STATUT UTILISATEUR
+if(isset($_GET['action']) && $_GET['action'] == "changer_statut" && isset($_GET['id'])){
 
     $id = $_GET['id'];
     $stmt = $mysqli->prepare('SELECT * FROM user WHERE id = ?');
@@ -52,9 +50,8 @@ if(isset($_GET['action']) && $_GET['action'] == "changer_statut" && isset($_GET[
     }
 }
 
-//--- SUPPRIMER UTILISATEUR ---//
-if(isset($_GET['action']) && $_GET['action'] == "supprimer" && isset($_GET['id']))
-{
+//SUPPRIMER UTILISATEUR
+if(isset($_GET['action']) && $_GET['action'] == "supprimer" && isset($_GET['id'])){
     $id = $_GET['id'];
     $stmt = $mysqli->prepare('SELECT * FROM user WHERE id = ?');
     $stmt->bind_param('i', $id);

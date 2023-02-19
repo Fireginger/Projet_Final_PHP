@@ -1,10 +1,7 @@
 <?php
 require_once("init.inc.php");
-
-//--------------------------------- TRAITEMENTS PHP ---------------------------------//
-//--- SUPPRESSION PRODUIT ---//
-if(isset($_GET['action']) && $_GET['action'] == "suppression")
-{   // $contenu .= $_GET['id']
+//SUPPRESSION
+if(isset($_GET['action']) && $_GET['action'] == "suppression"){
     $resultat = executeRequete("SELECT * FROM article WHERE id=$_GET[id]");
     $produit_a_supprimer = $resultat->fetch_assoc();
     $chemin_photo_a_supprimer = $_SERVER['DOCUMENT_ROOT'] . $produit_a_supprimer['image_link'];
@@ -37,37 +34,27 @@ if(!empty($_POST)){
     $_GET['action'] = 'affichage';
 }
 
-//--- LIENS PRODUITS ---//
 $contenu .= '<a href="?action=affichage">Affichage des produits</a><br>';
-//--- AFFICHAGE PRODUITS ---//
-if(isset($_GET['action']) && $_GET['action'] == "affichage")
-{
+//AFFICHAGE PRODUITS
+if(isset($_GET['action']) && $_GET['action'] == "affichage"){
     $userid = $_SESSION['user']['id'];
     $resultat = executeRequete("SELECT * FROM article WHERE author_id = $userid ");
-     
     $contenu .= '<h2> Affichage des Produits </h2>';
     $contenu .= 'Nombre de vos produit(s) dans la boutique : ' . $resultat->num_rows;
     $contenu .= '<table border="1"><tr>';
-     
-    while($colonne = $resultat->fetch_field())
-    {    
+    while($colonne = $resultat->fetch_field()){    
         $contenu .= '<th>' . $colonne->name . '</th>';
     }
     $contenu .= '<th>Modification</th>';
     $contenu .= '<th>Supression</th>';
     $contenu .= '</tr>';
- 
-    while ($ligne = $resultat->fetch_assoc())
-    {
+    while ($ligne = $resultat->fetch_assoc()){
         $contenu .= '<tr>';
-        foreach ($ligne as $indice => $information)
-        {
-            if($indice == "image_link")
-            {
+        foreach ($ligne as $indice => $information){
+            if($indice == "image_link"){
                 $contenu .= '<td><img src="' . $information . '" ="70" height="70"></td>';
             }
-            else
-            {
+            else{
                 $contenu .= '<td>' . $information . '</td>';
             }
         }
@@ -78,7 +65,7 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
     $contenu .= '</table><br><hr><br>';
 }
 
-//--------------------------------- AFFICHAGE HTML ---------------------------------//
+//AFFICHAGE
 require_once("haut.inc.php");
 echo $contenu;
 if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == 'modification')){
@@ -93,45 +80,31 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
     echo '
     <h1> Formulaire Produits </h1>
     <form method="post" enctype="multipart/form-data" action="">
-     
-        <input type="hidden" id="id" name="id" value="'; if(isset($produit_actuel['id'])) echo $produit_actuel['id']; echo '">
-             
+        <input type="hidden" id="id" name="id" value="'; if(isset($produit_actuel['id'])) echo $produit_actuel['id']; echo '">  
         <label for="name">name</label><br>
         <input type="text" id="name" name="name" placeholder="le nom du produit" value="'; if(isset($produit_actuel['name'])) echo $produit_actuel['name']; echo '"><br><br>
- 
         <label for="description">description</label><br>
         <input type="text" id="description" name="description" placeholder="la description du produit" value="'; if(isset($produit_actuel['description'])) echo $produit_actuel['description']; echo '" ><br><br>
- 
         <label for="price">price</label><br>
         <input type="text" id="price" name="price" placeholder="le prix du produit" value="'; if(isset($produit_actuel['price'])) echo $produit_actuel['price']; echo '" > <br><br>
- 
         <label for="publication_date">publication_date</label><br>
         <textarea name="publication_date" id="publication_date" placeholder="la date de publication du produit">'; if(isset($produit_actuel['publication_date'])) echo $produit_actuel['publication_date']; echo '</textarea><br><br>
-         
         <label for="author_id">author_id</label><br>
         <input type="text" id="author_id" name="author_id" placeholder="l ID de l auteur du produit"  value="'; if(isset($produit_actuel['author_id'])) echo $produit_actuel['author_id']; echo '"> <br><br>
-
         <label for="catégorie">catégorie</label><br>
         <input type="text" id="catégorie" name="catégorie" placeholder="la catégorie du produit" value="'; if(isset($produit_actuel['catégorie'])) echo $produit_actuel['catégorie']; echo '" ><br><br>
-
         <label for="quantity">quantity</label><br>
         <input type="text" id="quantity" name="quantity" placeholder="Nombre de produit" value="'; if(isset($stock_actuel['quantity'])) echo $stock_actuel['quantity']; echo '" ><br><br>
-         
         <label for="image_link">image_link</label><br>
         <input type="file" id="image_link" name="image_link"><br><br>';
 
-
-        if(isset($produit_actuel))
-        {
+        if(isset($produit_actuel)){
             echo '<i>Vous pouvez uplaoder une nouvelle photo si vous souhaitez la changer</i><br>';
             echo '<img src="' . $produit_actuel['image_link'] . '"  ="90" height="90"><br>';
             echo '<input type="hidden" name="photo_actuelle" value="' . $produit_actuel['image_link'] . '"><br>';
         }
          
-        echo '         
-
-        <input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit">
-    </form>';
+        echo '<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"></form>';
 }
 require_once("bas.inc.php"); ?>
 ?> 

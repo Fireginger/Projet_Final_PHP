@@ -1,13 +1,8 @@
 <?php
 require_once("init.inc.php");
 
-if(!internauteEstConnecte()) {
-    header("location:connexion.php");
-    exit();
-}
 
-if(isset($_POST['ajout_panier'])) 
-{   // debug($_POST);
+if(isset($_POST['ajout_panier'])) {
     $getid = $_POST['id'];
     $resultat = executeRequete("SELECT * FROM article WHERE article.id = $getid");
     $articleid = executeRequete("SELECT id FROM article WHERE article.id = $getid");
@@ -117,8 +112,7 @@ require_once("haut.inc.php");
     <?php displayCartItems(); ?>
 </div>
 <h2>Place Order</h2>
-<button onclick="placeOrder()">Place Order</button>
-
+<a href="confirmation.php"><button onclick="placeOrder()">Place Order</button></a>
 <?php
 require_once("bas.inc.php");
 ?>

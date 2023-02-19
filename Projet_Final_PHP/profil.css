@@ -7,12 +7,12 @@ p.centre {
 
 /* Style pour le cadre de la section d'informations */
 div.cadre {
-    border: 2px solid #90b7dd;
+    border: 2px solid #e5e5e6;
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(223, 210, 210, 0.1);
-    background-color: #90b7dd;
+    background-color: #e5e5e6;
 }
 
 /* Style pour le titre de la section */
@@ -26,20 +26,4 @@ div.cadre p {
     font-size: 1.2em;
     line-height: 1.5;
     margin-bottom: 10px;
-}
-
-/* Style pour le lien de déconnexion */
-a.logout {
-    display: block;
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #f00;
-}
-
-/* Style pour les liens */
-a {
-    text-decoration: none;
-    color: #336699;
 }

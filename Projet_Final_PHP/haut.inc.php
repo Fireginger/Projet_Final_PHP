@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="<?php echo RACINE_SITE; ?>style.css">
     <link rel="stylesheet" href="<?php echo RACINE_SITE; ?>Connexion.css">
     <link rel="stylesheet" type="text/css" href="profil.css">
+    <link rel="stylesheet" type="text/css" href="edit.css">
+    <link rel="stylesheet" type="text/css" href="panier.css">
+    <link rel="stylesheet" type="text/css" href="sell.css">
+
 </head>
 
 <body>

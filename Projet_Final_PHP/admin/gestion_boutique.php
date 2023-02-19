@@ -37,8 +37,9 @@ if(!empty($_POST)){
     foreach($_POST as $indice => $valeur){
         $_POST[$indice] = htmlEntities(addSlashes($valeur));
     }
+    $user_id = $_SESSION['user']['id'];
     $publication_date = date("Y-m-d H:i:s");
-    executeRequete("REPLACE INTO article (id, name, description, price, publication_date, author_id, catégorie, image_link) values ('', '$_POST[name]', '$_POST[description]', '$_POST[price]', '$publication_date', '$_POST[author_id]', '$_POST[catégorie]', '$photo_bdd')");
+    executeRequete("REPLACE INTO article (id, name, description, price, publication_date, author_id, catégorie, image_link) values ('', '$_POST[name]', '$_POST[description]', '$_POST[price]', '$publication_date', '$user_id', '$_POST[catégorie]', '$photo_bdd')");
     $id = $mysqli->insert_id;
     executeRequete("INSERT INTO stock (article_id, quantity) values ('$id', '$_POST[quantity]')"); 
     $contenu .= '<div class="validation">Le produit a été ajouté</div>';
@@ -97,8 +98,6 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
         <input type="text" id="description" name="description" placeholder="la description du produit" value="'; if(isset($produit_actuel['description'])) echo $produit_actuel['description']; echo '" ><br><br>
         <label for="price">price</label><br>
         <input type="text" id="price" name="price" placeholder="le prix du produit" value="'; if(isset($produit_actuel['price'])) echo $produit_actuel['price']; echo '" > <br><br>
-        <label for="author_id">author_id</label><br>
-        <input type="text" id="author_id" name="author_id" placeholder="l ID de l auteur du produit"  value="'; if(isset($produit_actuel['author_id'])) echo $produit_actuel['author_id']; echo '"> <br><br>
         <label for="catégorie">catégorie</label><br>
         <input type="text" id="catégorie" name="catégorie" placeholder="la catégorie du produit" value="'; if(isset($produit_actuel['catégorie'])) echo $produit_actuel['catégorie']; echo '" ><br><br>
         <label for="quantity">quantity</label><br>
@@ -112,9 +111,6 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
             echo '<img src="' . $produit_actuel['image_link'] . '"  ="90" height="90"><br>';
             echo '<input type="hidden" name="photo_actuelle" value="' . $produit_actuel['image_link'] . '"><br>';
         }
-         
-        echo '         
-        <input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit">
-    </form>';
+        echo '<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"></form>';
 }
 require_once("../bas.inc.php"); ?>
