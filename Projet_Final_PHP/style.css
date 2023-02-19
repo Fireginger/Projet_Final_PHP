@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+.conteneur {
+    margin: 0 auto;
+    max-width: 1170px;
+}
+
+/* ------------------------------ HAUT ------------------------------ */
+header {
+    background: #330867;
+    border-bottom: 2px solid #330867;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 30px;
+    color: #000;
+}
+
+header nav {
+    display: flex;
+}
+
+header nav a {
+    color: #000000;
+    font-weight: bold;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    color: #04baf6;
+}
+
+header button {
+    background: #04baf6;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+header button:hover {
+    background: #fff;
+    color: #04baf6;
+    border: 2px solid #04baf6;
+}
+
+/* ------------------------------ MILIEU ------------------------------ */
+section {
+    padding: 30px;
+}
+
+.boutique {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.boutique-gauche {
+    width: 30%;
+    background: #f2f2f2;
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.boutique-gauche h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.boutique-gauche ul {
+    list-style: none;
+    padding: 0;
+}
+
+.boutique-gauche ul li {
+    margin-bottom: 10px;
+}
+
+.boutique-gauche ul li a {
+    display: block;
+    padding: 10px;
+    background: #04baf6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.boutique-gauche ul li a:hover {
+    background: #fff;
+    color: #04baf6;
+    border: 2px solid #04baf6;
+}
+
+.boutique-produits {
+    width: 68%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header a {
+    color: #000000;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.boutique-produit {
+    width: calc(33.33% - 20px);
+    margin-bottom: 40px;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 2px solid #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.boutique-produit:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.boutique-produit img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.boutique-produit h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.boutique-produit p {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.boutique-produit .prix {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f85c70;
+    margin-bottom: 10px;
+}
+
+.boutique-produit button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f85c70;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.boutique-produit button:hover {
+    background-color: #f62f52;
+}
+
+footer {
+    background: #30cfd0;
+    color: white;
+    text-align: center;
+    padding: 1px 1;
+}
+
+section {
+    padding: 30px;
+    min-height: 937px;
+}
+
+/**************************************************** BAS ************************************************/
+footer {
+    background: #30cfd0;
+    color: white;
+    text-align: center;
+    padding: 1px 1;
+}
+
+/**************************************************** GENERAL ************************************************/
+.erreur {
+    background: #ff0000;
+    padding: 5px;
+    margin: 5px;
+}
+
+.validation {
+    background: #669933;
+    padding: 5px;
+    margin: 5px;
+}
+
+/**************************************************** BOUTIQUE ************************************************/
+.boutique-gauche {
+    float: left;
+    float: 30%;
+    background: #f2f2f2;
+    min-height: 500px;
+    margin-right: 10%;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.boutique-gauche ul {
+    list-style: none;
+    padding: 0;
+}
+
+.boutique-gauche ul li a {
+    display: block;
+    padding: 10px;
+}
+
+.boutique-gauche ul li a:hover {
+    background: #04baf6;
+    color: #fff;
+}
+
+.boutique-droite {
+    float: left;
+    float: 60%;
+}
+
+.boutique-produit {
+    float: left;
+    float: 30%;
+    text-align: center;
+    padding: 5%;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.boutique-produit:hover {
+    background: #c0c0c0;
+}
