@@ -3,20 +3,15 @@ if($_POST)
 {
     debug($_POST);
     $verif_caractere = preg_match('#^[a-zA-Z0-9._-]+$#', $_POST['username']); 
-    if(!$verif_caractere && (strlen($_POST['username']) < 1 || strlen($_POST['username']) > 20) ) // 
-    {
+    if(!$verif_caractere && (strlen($_POST['username']) < 1 || strlen($_POST['username']) > 20) ){
         $contenu .= "<div class='erreur'>L'username doit contenir entre 1 et 20 caractères. <br> Caractère accepté : Lettre de A à Z et chiffre de 0 à 9</div>";
     }
-    else
-    {
+    else{
         $membre = executeRequete("SELECT * FROM user WHERE username='$_POST[username]'");
-        if($membre->num_rows > 0)
-        {
+        if($membre->num_rows > 0){
             $contenu .= "<div class='erreur'>Username indisponible. Veuillez en choisir un autre svp.</div>";
         }
-        else
-        {
-            // $_POST['mdp'] = md5($_POST['mdp']);
+        else{
             foreach($_POST as $indice => $valeur)
             {
                 $_POST[$indice] = htmlEntities(addSlashes($valeur));

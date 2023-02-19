@@ -6,8 +6,7 @@ if(!internauteEstConnecte()) {
     exit();
 }
 
-if(isset($_POST['ajout_panier'])) 
-{   // debug($_POST);
+if(isset($_POST['ajout_panier'])){
     $getid = $_POST['id'];
     $resultat = executeRequete("SELECT * FROM article WHERE article.id = $getid");
     $articleid = executeRequete("SELECT id FROM article WHERE article.id = $getid");

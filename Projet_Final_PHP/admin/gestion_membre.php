@@ -1,17 +1,11 @@
 <?php
 require_once("../init.inc.php");
-
-//--- LIENS UTILISATEURS ---//
 $contenu .= '<a href="?action=affichage">Affichage des utilisateurs</a><br>';
-
-//--- AFFICHAGE UTILISATEURS ---//
-if(isset($_GET['action']) && $_GET['action'] == "affichage")
-{
+if(isset($_GET['action']) && $_GET['action'] == "affichage"){
     $contenu .= '<table><tr><th>ID</th><th>Nom d\'utilisateur</th><th>Email</th><th>Solde</th><th>Photo de profil</th><th>Role</th><th>Action</th></tr>';
     $result = executeRequete("SELECT * FROM user");
 
-    while($utilisateur = $result->fetch_assoc())
-    {
+    while($utilisateur = $result->fetch_assoc()){
         $contenu .= '<tr>';
         $contenu .= '<td>'.$utilisateur['id'].'</td>';
         $contenu .= '<td>'.$utilisateur['username'].'</td>';
@@ -25,17 +19,14 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
     $contenu .= '</table>';
 }
 
-//--- CHANGER STATUT UTILISATEUR ---//
-if(isset($_GET['action']) && $_GET['action'] == "changer_statut" && isset($_GET['id']))
-{
-
+//CHANGER STATUT UTILISATEUR 
+if(isset($_GET['action']) && $_GET['action'] == "changer_statut" && isset($_GET['id'])){
     $id = $_GET['id'];
     $stmt = $mysqli->prepare('SELECT * FROM user WHERE id = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $resultat = $stmt->get_result();
     $utilisateur = $resultat->fetch_assoc();
-
     if ($utilisateur) {
         $nouveau_role = $utilisateur['role'] == 'administrateur' ? 'user' : 'administrateur';
         $stmt = $mysqli->prepare('UPDATE user SET role = ? WHERE id = ?');
@@ -52,7 +43,7 @@ if(isset($_GET['action']) && $_GET['action'] == "changer_statut" && isset($_GET[
     }
 }
 
-//--- SUPPRIMER UTILISATEUR ---//
+//SUPPRIMER
 if(isset($_GET['action']) && $_GET['action'] == "supprimer" && isset($_GET['id']))
 {
     $id = $_GET['id'];
@@ -61,13 +52,10 @@ if(isset($_GET['action']) && $_GET['action'] == "supprimer" && isset($_GET['id']
     $stmt->execute();
     $resultat = $stmt->get_result();
     $utilisateur = $resultat->fetch_assoc();
-
     if ($utilisateur) {
-
         $stmt = $mysqli->prepare('DELETE FROM user WHERE id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
-        
         if ($stmt->affected_rows > 0) {
             echo 'L\'utilisateur a été supprimé avec succès';
         } else {
@@ -77,7 +65,6 @@ if(isset($_GET['action']) && $_GET['action'] == "supprimer" && isset($_GET['id']
         echo 'Aucun utilisateur avec cet identifiant n\'a été trouvé';
     }
 }
-
 require_once("../haut.inc.php");
 echo $contenu;
 require_once("../bas.inc.php");

@@ -1,8 +1,6 @@
 <?php
 require_once("init.inc.php");
-
-//--------------------------------- TRAITEMENTS PHP ---------------------------------//
-//--- AFFICHAGE DES CATEGORIES ---//
+//CATEGORIES
 $categories_des_produits = executeRequete("SELECT DISTINCT catégorie FROM article");
 $contenu .= '<div class="boutique-gauche">';
 $contenu .= "<ul>";
@@ -12,7 +10,7 @@ while($cat = $categories_des_produits->fetch_assoc())
 }
 $contenu .= "</ul>";
 $contenu .= "</div>";
-//--- AFFICHAGE DES PRODUITS ---//
+//PRODUITS
 $contenu .= '<div class="boutique-droite">';
 if(isset($_GET['catégorie']))
 {
@@ -28,7 +26,6 @@ if(isset($_GET['catégorie']))
     }
 }
 $contenu .= '</div>';
-//--------------------------------- AFFICHAGE HTML ---------------------------------//
 require_once("haut.inc.php");
 echo $contenu;
 require_once("bas.inc.php"); ?>

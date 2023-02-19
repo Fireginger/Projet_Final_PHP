@@ -1,14 +1,9 @@
 <?php
 require_once("init.inc.php");
-
-// Define SQL query to retrieve article data
 $query =  executeRequete("SELECT id, author_id, name, description, price, image_link, publication_date, catégorie FROM Article ORDER BY catégorie, publication_date DESC");
-
-// Execute query and retrieve results
 $result = $query;
 
 if ($result && mysqli_num_rows($result) > 0) {
-    // Loop through results and output each article as HTML
     while ($row = mysqli_fetch_assoc($result)) {
         $id = htmlspecialchars($row['id']);
         $author_id = htmlspecialchars($row['author_id']);
@@ -18,7 +13,6 @@ if ($result && mysqli_num_rows($result) > 0) {
         $image_link = htmlspecialchars($row['image_link']);
         $publication_date = htmlspecialchars($row['publication_date']);
         $catégorie = htmlspecialchars($row['catégorie']);
-
         $contenu .= '<div class="article-item">';
         $contenu .= '<h2>'.$name.'</h2>';
         $contenu .= '<p>Catégorie: '.$catégorie.'</p>';

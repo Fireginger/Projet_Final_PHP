@@ -1,6 +1,5 @@
 <?php
-function executeRequete($req)
-{
+function executeRequete($req){
     global $mysqli;
     $resultat = $mysqli->query($req);
     if(!$resultat)
@@ -9,9 +8,7 @@ function executeRequete($req)
     }
     return $resultat;
 }
-//------------------------------------
-function debug($var, $mode = 1)
-{
+function debug($var, $mode = 1){
     echo '<div style="background: orange; padding: 5px; float: right; clear: both; ">';
     $trace = debug_backtrace();
     $trace = array_shift($trace);
@@ -26,15 +23,11 @@ function debug($var, $mode = 1)
     }
     echo '</div>';
 }
-//------------------------------------
-function internauteEstConnecte()
-{ 
+function internauteEstConnecte(){ 
     if(!isset($_SESSION['user'])) return false;
     else return true;
 }
-//------------------------------------
-function internauteEstConnecteEtEstAdmin()
-{
+function internauteEstConnecteEtEstAdmin(){
     if(internauteEstConnecte() && $_SESSION['user']['role'] == "administrateur") return true;
     else return false;
 }
