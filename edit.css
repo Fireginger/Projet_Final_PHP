@@ -1,0 +1,26 @@
+h1,
+h2 {
+    text-transform: uppercase;
+    color: #314151;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th,
+td {
+    border: 1px solid #314151;
+
+}
+
+th {
+    background-color: #314151;
+    color: #fff;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+}

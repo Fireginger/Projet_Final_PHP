@@ -1,0 +1,75 @@
+/* Styles pour le conteneur du panier */
+#cart {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* Styles pour les articles du panier */
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cart-item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.cart-item h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.cart-item p {
+    margin: 0;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.cart-item .increase-item,
+.cart-item .decrease-item,
+.cart-item .remove-item {
+    margin-left: auto;
+    font-size: 14px;
+    text-decoration: none;
+    color: #007185;
+    padding: 5px 10px;
+    border: 1px solid #007185;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.cart-item .increase-item:hover,
+.cart-item .decrease-item:hover,
+.cart-item .remove-item:hover {
+    background-color: #007185;
+    color: #fff;
+}
+
+/* Styles pour le bouton "Place Order" */
+.place-order {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #007185;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.place-order:hover {
+    background-color: #005267;
+}

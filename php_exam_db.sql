@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 07 fév. 2023 à 16:26
+-- Généré le : dim. 19 fév. 2023 à 23:50
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -38,6 +38,14 @@ CREATE TABLE `article` (
   `catégorie` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id`, `name`, `description`, `price`, `publication_date`, `author_id`, `image_link`, `catégorie`) VALUES
+(75, 'zehze', 'hezhzeh', '1000000.00', '2023-02-19', 6, '/Projet_Final_PHP/photo/zehze_ferrari.png', 'hzehzeh'),
+(79, 'thomas', 'test', '15000.00', '2022-02-01', 5, '/Projet_Final_PHP/photo/thomas_ferrari.png', 'voiture');
+
 -- --------------------------------------------------------
 
 --
@@ -47,8 +55,16 @@ CREATE TABLE `article` (
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `article_id` int(11) DEFAULT NULL
+  `article_id` int(11) DEFAULT NULL,
+  `quantity` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `article_id`, `quantity`) VALUES
+(17, 5, 79, 1);
 
 -- --------------------------------------------------------
 
@@ -78,6 +94,14 @@ CREATE TABLE `stock` (
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `stock`
+--
+
+INSERT INTO `stock` (`id`, `article_id`, `quantity`) VALUES
+(59, 75, 0),
+(63, 79, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -99,10 +123,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `solde`, `profile_picture`, `role`) VALUES
-(1, 'test', 'test', 'test@gmail.com', '10.00', NULL, 'chef'),
-(2, 'test2', '', 'test2@gmail.com', NULL, NULL, NULL),
-(3, 'test3', 'test3', 'test3@gmail.com', NULL, NULL, NULL),
-(4, 'thomas', 'thomas', 'thomas@gmail.com', NULL, NULL, 'administrateur');
+(1, 'test', 'test', 'test@gmail.com', '10.00', NULL, 'user'),
+(4, 'thomas', 'thomas', 'thomas@gmail.com', NULL, NULL, 'administrateur'),
+(5, 'moi', 'moi', 'moi@gmail.com', NULL, NULL, 'user'),
+(6, 'Fireginger', 'Ellande44', 'teveillard@gmail.com', NULL, NULL, 'administrateur');
 
 --
 -- Index pour les tables déchargées
@@ -120,8 +144,8 @@ ALTER TABLE `article`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `article_id` (`article_id`);
+  ADD KEY `cart_ibfk_1` (`user_id`),
+  ADD KEY `cart_ibfk_2` (`article_id`);
 
 --
 -- Index pour la table `invoice`
@@ -135,7 +159,7 @@ ALTER TABLE `invoice`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `article_id` (`article_id`);
+  ADD KEY `stock_ibfk_1` (`article_id`);
 
 --
 -- Index pour la table `user`
@@ -153,13 +177,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT pour la table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `invoice`
@@ -171,13 +195,13 @@ ALTER TABLE `invoice`
 -- AUTO_INCREMENT pour la table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
@@ -193,8 +217,8 @@ ALTER TABLE `article`
 -- Contraintes pour la table `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `invoice`
@@ -206,7 +230,7 @@ ALTER TABLE `invoice`
 -- Contraintes pour la table `stock`
 --
 ALTER TABLE `stock`
-  ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+  ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

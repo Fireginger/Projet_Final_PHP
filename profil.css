@@ -1,0 +1,29 @@
+/* Style pour la balise p.centre */
+p.centre {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* Style pour le cadre de la section d'informations */
+div.cadre {
+    border: 2px solid #e5e5e6;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(223, 210, 210, 0.1);
+    background-color: #e5e5e6;
+}
+
+/* Style pour le titre de la section */
+div.cadre h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Style pour les informations d'utilisateur */
+div.cadre p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
